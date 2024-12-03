@@ -1,0 +1,28 @@
+﻿<Page x:Class="SchoolUP.pages.ChangePrepodavatel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SchoolUP.pages" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1200"
+      Title="ChangePrepodavatel">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Margin="150,158,150,82" Grid.Row="1">
+            <ui:Button x:Name="btnExam" HorizontalAlignment="Center" Background="White" Content="Экзамены" Width="180" Height="45" Click="btnExam_Click"/>
+            <ui:Button x:Name="btnDisp" HorizontalAlignment="Center" Margin="0,20,0,0" Background="White" Content="Дисциплины" Width="180" Height="45" Click="btnDisp_Click" />
+        </StackPanel>
+        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
+    </Grid>
+</Page>

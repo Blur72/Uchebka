@@ -1,0 +1,940 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище UPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "UP.dbo.Akademiki" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Akademiki">
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateOfBirth" Type="date" />
+          <Property Name="spec" Type="nvarchar" MaxLength="50" />
+          <Property Name="year" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Animals_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="otryad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "UP.dbo.Country" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Country">
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stolica" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ploshad" Type="int" />
+          <Property Name="Naselenie" Type="int" />
+          <Property Name="Kontinent" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Country_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stolica" Type="nvarchar" MaxLength="50" />
+          <Property Name="kontinent" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="naselenie" Type="int" />
+          <Property Name="ploshad" Type="int" />
+          <Property Name="tip" Type="int" />
+        </EntityType>
+        <EntityType Name="Disciplina">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" Nullable="false" />
+          <Property Name="volume" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ispolnitel" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="date" Type="nvarchar" MaxLength="50" />
+          <Property Name="kod" Type="int" />
+          <Property Name="reg_nomer" Type="int" />
+          <Property Name="tab_nomer" Type="int" />
+          <Property Name="auditorya" Type="nvarchar" MaxLength="50" />
+          <Property Name="ocenka" Type="int" />
+        </EntityType>
+        <EntityType Name="Fakultet">
+          <Key>
+            <PropertyRef Name="Abbriviatura" />
+          </Key>
+          <Property Name="Abbriviatura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="flowers_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="class" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ingener">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="int" Nullable="false" />
+          <Property Name="spec" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kafedra">
+          <Key>
+            <PropertyRef Name="shifr" />
+          </Key>
+          <Property Name="shifr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="fakultet" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Prepodavatel">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="int" Nullable="false" />
+          <Property Name="zvanie" Type="nvarchar" MaxLength="50" />
+          <Property Name="stepen" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="int" Nullable="false" />
+          <Property Name="shifr" Type="nvarchar" MaxLength="50" />
+          <Property Name="Familiya" Type="nvarchar" MaxLength="50" />
+          <Property Name="Doljnost" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zarplata" Type="int" />
+          <Property Name="Shef" Type="int" />
+        </EntityType>
+        <EntityType Name="Specialnost">
+          <Key>
+            <PropertyRef Name="nomer" />
+          </Key>
+          <Property Name="nomer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="napravlenie" Type="nvarchar" MaxLength="50" />
+          <Property Name="shifr" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="reg_nomer" />
+          </Key>
+          <Property Name="reg_nomer" Type="int" Nullable="false" />
+          <Property Name="nomer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Familiya" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Predmet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="School" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Score" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Upravlenie_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Vid" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zav_kafedra">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="int" Nullable="false" />
+          <Property Name="staj" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "UP.dbo.Zayavka" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Zayavka">
+          <Property Name="kod" Type="nvarchar" MaxLength="50" />
+          <Property Name="nomer" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Гимназисты">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="object" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="school" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="marks" Type="float" />
+        </EntityType>
+        <Association Name="FK_Disciplina_Kafedra">
+          <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="0..1" />
+          <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="shifr" />
+            </Principal>
+            <Dependent Role="Disciplina">
+              <PropertyRef Name="ispolnitel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Disciplina">
+          <End Role="Disciplina" Type="Self.Disciplina" Multiplicity="0..1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplina">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="kod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="reg_nomer" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="reg_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Student1">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="reg_nomer" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="reg_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingener_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Ingener" Type="Self.Ingener" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Ingener">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kafedra_Fakultet1">
+          <End Role="Fakultet" Type="Self.Fakultet" Multiplicity="0..1" />
+          <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakultet">
+              <PropertyRef Name="Abbriviatura" />
+            </Principal>
+            <Dependent Role="Kafedra">
+              <PropertyRef Name="fakultet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prepodavatel_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Prepodavatel" Type="Self.Prepodavatel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Prepodavatel">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Kafedra">
+          <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="0..1" />
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="shifr" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="shifr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specialnost_Kafedra">
+          <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="0..1" />
+          <End Role="Specialnost" Type="Self.Specialnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="shifr" />
+            </Principal>
+            <Dependent Role="Specialnost">
+              <PropertyRef Name="shifr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Specialnost">
+          <End Role="Specialnost" Type="Self.Specialnost" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialnost">
+              <PropertyRef Name="nomer" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zav_kafedra_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Zav_kafedra" Type="Self.Zav_kafedra" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Zav_kafedra">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Ошибки, обнаруженные при создании:
+ошибка 6004: Невозможно найти таблицу "UP.dbo.Zayavka", на которую ссылается связь.
+        <Association Name="FK_Zayavka_Specialnost" />-->
+        <EntityContainer Name="Хранилище UPModelContainer">
+          <EntitySet Name="Animals_Valitov" EntityType="Self.Animals_Valitov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country_Valitov" EntityType="Self.Country_Valitov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disciplina" EntityType="Self.Disciplina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fakultet" EntityType="Self.Fakultet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flowers_Valitov" EntityType="Self.flowers_Valitov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ingener" EntityType="Self.Ingener" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kafedra" EntityType="Self.Kafedra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prepodavatel" EntityType="Self.Prepodavatel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialnost" EntityType="Self.Specialnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Upravlenie_Valitov" EntityType="Self.Upravlenie_Valitov" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zav_kafedra" EntityType="Self.Zav_kafedra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Гимназисты" EntityType="Self.Гимназисты" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Disciplina_Kafedra" Association="Self.FK_Disciplina_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Disciplina" EntitySet="Disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Disciplina" Association="Self.FK_Exam_Disciplina">
+            <End Role="Disciplina" EntitySet="Disciplina" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Student" Association="Self.FK_Exam_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Student1" Association="Self.FK_Exam_Student1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingener_Sotrudnik" Association="Self.FK_Ingener_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Ingener" EntitySet="Ingener" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kafedra_Fakultet1" Association="Self.FK_Kafedra_Fakultet1">
+            <End Role="Fakultet" EntitySet="Fakultet" />
+            <End Role="Kafedra" EntitySet="Kafedra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prepodavatel_Sotrudnik" Association="Self.FK_Prepodavatel_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Kafedra" Association="Self.FK_Sotrudnik_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specialnost_Kafedra" Association="Self.FK_Specialnost_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Specialnost" EntitySet="Specialnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Specialnost" Association="Self.FK_Student_Specialnost">
+            <End Role="Specialnost" EntitySet="Specialnost" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zav_kafedra_Sotrudnik" Association="Self.FK_Zav_kafedra_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zav_kafedra" EntitySet="Zav_kafedra" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UPEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals_Valitov" EntityType="UPModel.Animals_Valitov" />
+          <EntitySet Name="Country_Valitov" EntityType="UPModel.Country_Valitov" />
+          <EntitySet Name="Disciplina" EntityType="UPModel.Disciplina" />
+          <EntitySet Name="Exam" EntityType="UPModel.Exam" />
+          <EntitySet Name="Fakultet" EntityType="UPModel.Fakultet" />
+          <EntitySet Name="flowers_Valitov" EntityType="UPModel.flowers_Valitov" />
+          <EntitySet Name="Ingener" EntityType="UPModel.Ingener" />
+          <EntitySet Name="Kafedra" EntityType="UPModel.Kafedra" />
+          <EntitySet Name="Prepodavatel" EntityType="UPModel.Prepodavatel" />
+          <EntitySet Name="Sotrudnik" EntityType="UPModel.Sotrudnik" />
+          <EntitySet Name="Specialnost" EntityType="UPModel.Specialnost" />
+          <EntitySet Name="Student" EntityType="UPModel.Student" />
+          <EntitySet Name="Students" EntityType="UPModel.Students" />
+          <EntitySet Name="sysdiagrams" EntityType="UPModel.sysdiagrams" />
+          <EntitySet Name="Upravlenie_Valitov" EntityType="UPModel.Upravlenie_Valitov" />
+          <EntitySet Name="Zav_kafedra" EntityType="UPModel.Zav_kafedra" />
+          <EntitySet Name="Гимназисты" EntityType="UPModel.Гимназисты" />
+          <AssociationSet Name="FK_Disciplina_Kafedra" Association="UPModel.FK_Disciplina_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Disciplina" EntitySet="Disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Disciplina" Association="UPModel.FK_Exam_Disciplina">
+            <End Role="Disciplina" EntitySet="Disciplina" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Student" Association="UPModel.FK_Exam_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Student1" Association="UPModel.FK_Exam_Student1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kafedra_Fakultet1" Association="UPModel.FK_Kafedra_Fakultet1">
+            <End Role="Fakultet" EntitySet="Fakultet" />
+            <End Role="Kafedra" EntitySet="Kafedra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ingener_Sotrudnik" Association="UPModel.FK_Ingener_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Ingener" EntitySet="Ingener" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudnik_Kafedra" Association="UPModel.FK_Sotrudnik_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specialnost_Kafedra" Association="UPModel.FK_Specialnost_Kafedra">
+            <End Role="Kafedra" EntitySet="Kafedra" />
+            <End Role="Specialnost" EntitySet="Specialnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prepodavatel_Sotrudnik" Association="UPModel.FK_Prepodavatel_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Prepodavatel" EntitySet="Prepodavatel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zav_kafedra_Sotrudnik" Association="UPModel.FK_Zav_kafedra_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Zav_kafedra" EntitySet="Zav_kafedra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Specialnost" Association="UPModel.FK_Student_Specialnost">
+            <End Role="Specialnost" EntitySet="Specialnost" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Animals_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="otryad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Country_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stolica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kontinent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="naselenie" Type="Int32" />
+          <Property Name="ploshad" Type="Int32" />
+          <Property Name="tip" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Disciplina">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" />
+          <Property Name="volume" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ispolnitel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Disciplina_Kafedra" FromRole="Disciplina" ToRole="Kafedra" />
+          <NavigationProperty Name="Exam" Relationship="UPModel.FK_Exam_Disciplina" FromRole="Disciplina" ToRole="Exam" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kod" Type="Int32" />
+          <Property Name="reg_nomer" Type="Int32" />
+          <Property Name="tab_nomer" Type="Int32" />
+          <Property Name="auditorya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ocenka" Type="Int32" />
+          <NavigationProperty Name="Disciplina" Relationship="UPModel.FK_Exam_Disciplina" FromRole="Exam" ToRole="Disciplina" />
+          <NavigationProperty Name="Student" Relationship="UPModel.FK_Exam_Student" FromRole="Exam" ToRole="Student" />
+          <NavigationProperty Name="Student1" Relationship="UPModel.FK_Exam_Student1" FromRole="Exam" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Fakultet">
+          <Key>
+            <PropertyRef Name="Abbriviatura" />
+          </Key>
+          <Property Name="Abbriviatura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Kafedra_Fakultet1" FromRole="Fakultet" ToRole="Kafedra" />
+        </EntityType>
+        <EntityType Name="flowers_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ingener">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="Int32" Nullable="false" />
+          <Property Name="spec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Ingener_Sotrudnik" FromRole="Ingener" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Kafedra">
+          <Key>
+            <PropertyRef Name="shifr" />
+          </Key>
+          <Property Name="shifr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fakultet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Disciplina" Relationship="UPModel.FK_Disciplina_Kafedra" FromRole="Kafedra" ToRole="Disciplina" />
+          <NavigationProperty Name="Fakultet1" Relationship="UPModel.FK_Kafedra_Fakultet1" FromRole="Kafedra" ToRole="Fakultet" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Sotrudnik_Kafedra" FromRole="Kafedra" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Specialnost" Relationship="UPModel.FK_Specialnost_Kafedra" FromRole="Kafedra" ToRole="Specialnost" />
+        </EntityType>
+        <EntityType Name="Prepodavatel">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="Int32" Nullable="false" />
+          <Property Name="zvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stepen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Prepodavatel_Sotrudnik" FromRole="Prepodavatel" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="Int32" Nullable="false" />
+          <Property Name="shifr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Doljnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zarplata" Type="Int32" />
+          <Property Name="Shef" Type="Int32" />
+          <NavigationProperty Name="Ingener" Relationship="UPModel.FK_Ingener_Sotrudnik" FromRole="Sotrudnik" ToRole="Ingener" />
+          <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Sotrudnik_Kafedra" FromRole="Sotrudnik" ToRole="Kafedra" />
+          <NavigationProperty Name="Prepodavatel" Relationship="UPModel.FK_Prepodavatel_Sotrudnik" FromRole="Sotrudnik" ToRole="Prepodavatel" />
+          <NavigationProperty Name="Zav_kafedra" Relationship="UPModel.FK_Zav_kafedra_Sotrudnik" FromRole="Sotrudnik" ToRole="Zav_kafedra" />
+        </EntityType>
+        <EntityType Name="Specialnost">
+          <Key>
+            <PropertyRef Name="nomer" />
+          </Key>
+          <Property Name="nomer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="napravlenie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shifr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Specialnost_Kafedra" FromRole="Specialnost" ToRole="Kafedra" />
+          <NavigationProperty Name="Student" Relationship="UPModel.FK_Student_Specialnost" FromRole="Specialnost" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="reg_nomer" />
+          </Key>
+          <Property Name="reg_nomer" Type="Int32" Nullable="false" />
+          <Property Name="nomer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Exam" Relationship="UPModel.FK_Exam_Student" FromRole="Student" ToRole="Exam" />
+          <NavigationProperty Name="Exam1" Relationship="UPModel.FK_Exam_Student1" FromRole="Student" ToRole="Exam" />
+          <NavigationProperty Name="Specialnost" Relationship="UPModel.FK_Student_Specialnost" FromRole="Student" ToRole="Specialnost" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Predmet" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="School" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="Double" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Upravlenie_Valitov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Vid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Zav_kafedra">
+          <Key>
+            <PropertyRef Name="tab_nomer" />
+          </Key>
+          <Property Name="tab_nomer" Type="Int32" Nullable="false" />
+          <Property Name="staj" Type="Int32" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Zav_kafedra_Sotrudnik" FromRole="Zav_kafedra" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Гимназисты">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="fname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="object" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="school" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="marks" Type="Double" />
+        </EntityType>
+        <Association Name="FK_Disciplina_Kafedra">
+          <End Type="UPModel.Kafedra" Role="Kafedra" Multiplicity="0..1" />
+          <End Type="UPModel.Disciplina" Role="Disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="shifr" />
+            </Principal>
+            <Dependent Role="Disciplina">
+              <PropertyRef Name="ispolnitel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Disciplina">
+          <End Type="UPModel.Disciplina" Role="Disciplina" Multiplicity="0..1" />
+          <End Type="UPModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplina">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="kod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Student">
+          <End Type="UPModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="UPModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="reg_nomer" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="reg_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Student1">
+          <End Type="UPModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="UPModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="reg_nomer" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="reg_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kafedra_Fakultet1">
+          <End Type="UPModel.Fakultet" Role="Fakultet" Multiplicity="0..1" />
+          <End Type="UPModel.Kafedra" Role="Kafedra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakultet">
+              <PropertyRef Name="Abbriviatura" />
+            </Principal>
+            <Dependent Role="Kafedra">
+              <PropertyRef Name="fakultet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ingener_Sotrudnik">
+          <End Type="UPModel.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UPModel.Ingener" Role="Ingener" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Ingener">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudnik_Kafedra">
+          <End Type="UPModel.Kafedra" Role="Kafedra" Multiplicity="0..1" />
+          <End Type="UPModel.Sotrudnik" Role="Sotrudnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="shifr" />
+            </Principal>
+            <Dependent Role="Sotrudnik">
+              <PropertyRef Name="shifr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specialnost_Kafedra">
+          <End Type="UPModel.Kafedra" Role="Kafedra" Multiplicity="0..1" />
+          <End Type="UPModel.Specialnost" Role="Specialnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafedra">
+              <PropertyRef Name="shifr" />
+            </Principal>
+            <Dependent Role="Specialnost">
+              <PropertyRef Name="shifr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prepodavatel_Sotrudnik">
+          <End Type="UPModel.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UPModel.Prepodavatel" Role="Prepodavatel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Prepodavatel">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zav_kafedra_Sotrudnik">
+          <End Type="UPModel.Sotrudnik" Role="Sotrudnik" Multiplicity="1" />
+          <End Type="UPModel.Zav_kafedra" Role="Zav_kafedra" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Zav_kafedra">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Specialnost">
+          <End Type="UPModel.Specialnost" Role="Specialnost" Multiplicity="0..1" />
+          <End Type="UPModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialnost">
+              <PropertyRef Name="nomer" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UPModelContainer" CdmEntityContainer="UPEntities1">
+          <EntitySetMapping Name="Animals_Valitov">
+            <EntityTypeMapping TypeName="UPModel.Animals_Valitov">
+              <MappingFragment StoreEntitySet="Animals_Valitov">
+                <ScalarProperty Name="otryad" ColumnName="otryad" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country_Valitov">
+            <EntityTypeMapping TypeName="UPModel.Country_Valitov">
+              <MappingFragment StoreEntitySet="Country_Valitov">
+                <ScalarProperty Name="tip" ColumnName="tip" />
+                <ScalarProperty Name="ploshad" ColumnName="ploshad" />
+                <ScalarProperty Name="naselenie" ColumnName="naselenie" />
+                <ScalarProperty Name="kontinent" ColumnName="kontinent" />
+                <ScalarProperty Name="stolica" ColumnName="stolica" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disciplina">
+            <EntityTypeMapping TypeName="UPModel.Disciplina">
+              <MappingFragment StoreEntitySet="Disciplina">
+                <ScalarProperty Name="ispolnitel" ColumnName="ispolnitel" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="kod" ColumnName="kod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exam">
+            <EntityTypeMapping TypeName="UPModel.Exam">
+              <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="ocenka" ColumnName="ocenka" />
+                <ScalarProperty Name="auditorya" ColumnName="auditorya" />
+                <ScalarProperty Name="tab_nomer" ColumnName="tab_nomer" />
+                <ScalarProperty Name="reg_nomer" ColumnName="reg_nomer" />
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fakultet">
+            <EntityTypeMapping TypeName="UPModel.Fakultet">
+              <MappingFragment StoreEntitySet="Fakultet">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Abbriviatura" ColumnName="Abbriviatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flowers_Valitov">
+            <EntityTypeMapping TypeName="UPModel.flowers_Valitov">
+              <MappingFragment StoreEntitySet="flowers_Valitov">
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ingener">
+            <EntityTypeMapping TypeName="UPModel.Ingener">
+              <MappingFragment StoreEntitySet="Ingener">
+                <ScalarProperty Name="spec" ColumnName="spec" />
+                <ScalarProperty Name="tab_nomer" ColumnName="tab_nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kafedra">
+            <EntityTypeMapping TypeName="UPModel.Kafedra">
+              <MappingFragment StoreEntitySet="Kafedra">
+                <ScalarProperty Name="fakultet" ColumnName="fakultet" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shifr" ColumnName="shifr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prepodavatel">
+            <EntityTypeMapping TypeName="UPModel.Prepodavatel">
+              <MappingFragment StoreEntitySet="Prepodavatel">
+                <ScalarProperty Name="stepen" ColumnName="stepen" />
+                <ScalarProperty Name="zvanie" ColumnName="zvanie" />
+                <ScalarProperty Name="tab_nomer" ColumnName="tab_nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="UPModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="Shef" ColumnName="Shef" />
+                <ScalarProperty Name="Zarplata" ColumnName="Zarplata" />
+                <ScalarProperty Name="Doljnost" ColumnName="Doljnost" />
+                <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+                <ScalarProperty Name="shifr" ColumnName="shifr" />
+                <ScalarProperty Name="tab_nomer" ColumnName="tab_nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialnost">
+            <EntityTypeMapping TypeName="UPModel.Specialnost">
+              <MappingFragment StoreEntitySet="Specialnost">
+                <ScalarProperty Name="shifr" ColumnName="shifr" />
+                <ScalarProperty Name="napravlenie" ColumnName="napravlenie" />
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="UPModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+                <ScalarProperty Name="reg_nomer" ColumnName="reg_nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="UPModel.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Predmet" ColumnName="Predmet" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Upravlenie_Valitov">
+            <EntityTypeMapping TypeName="UPModel.Upravlenie_Valitov">
+              <MappingFragment StoreEntitySet="Upravlenie_Valitov">
+                <ScalarProperty Name="Vid" ColumnName="Vid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zav_kafedra">
+            <EntityTypeMapping TypeName="UPModel.Zav_kafedra">
+              <MappingFragment StoreEntitySet="Zav_kafedra">
+                <ScalarProperty Name="staj" ColumnName="staj" />
+                <ScalarProperty Name="tab_nomer" ColumnName="tab_nomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Гимназисты">
+            <EntityTypeMapping TypeName="UPModel.Гимназисты">
+              <MappingFragment StoreEntitySet="Гимназисты">
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="school" ColumnName="school" />
+                <ScalarProperty Name="object" ColumnName="object" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

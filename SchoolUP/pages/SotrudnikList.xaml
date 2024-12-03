@@ -1,0 +1,64 @@
+﻿<Page x:Class="SchoolUP.pages.SotrudnikList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SchoolUP.pages" xmlns:ui="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1200"
+      Title="SotrudnikList" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ui:TextBox x:Name="txtfil" ui:Grid.Column="1" Margin="70,28,367,136" TextChanged="txtfil_TextChanged"/>
+        <ListView x:Name="SotrudnikListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.Column="1" Margin="70,106,179,34" Grid.RowSpan="2" ui:Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding tab_nomer}" Width="40" Header="Код"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding shifr}" Width="80" Header="Шифр"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Familiya}" Width="150" Header="Фамилия"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Doljnost}" Width="100" Header="Должность"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Zarplata}" Width="150" Header="Зарплата"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Shef}" Width="100" Header="Шеф"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel x:Name="stackAdd" Margin="31,106,569,106" ui:Grid.RowSpan="3" Grid.ColumnSpan="2">
+            <ui:TextBlock Text="id" FontSize="16px" Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtId" CaretBrush="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="volume" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtVolume" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="name" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtName" CaretBrush="Gray" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="ispolnitel" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtIspoln" CaretBrush="Gray" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="name" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtNam" CaretBrush="Gray" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="ispolnitel" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtIspln" CaretBrush="Gray" Margin="0,10,0,0"/>
+            <ui:Button Content="Добавить" Width="100" Height="40" Background="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
+        </StackPanel>
+        <StackPanel x:Name="stpan" Orientation="Horizontal" Margin="106,396,242,165" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Click="btnRedact_Click"/>
+            <ui:TextBox x:Name="txtBox" Width="100" Height="40" Margin="20,0,0,0"/>
+            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="White" Margin="0,0,0,0">
+                <ComboBoxItem Content="shifr"/>
+                <ComboBoxItem Content="Familiya"/>
+                <ComboBoxItem Content="Doljnost"/>
+                <ComboBoxItem Content="Zarplata"/>
+                <ComboBoxItem Content="Shef"/>
+            </ComboBox>
+            <ui:Button Name="btnRemove" Content="Удалить" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
+        </StackPanel>
+        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
+    </Grid>
+</Page>

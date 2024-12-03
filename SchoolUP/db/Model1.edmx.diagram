@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="675725c6d1524bef8f313bca7208aa18" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="UPModel.Animals_Valitov" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UPModel.Country_Valitov" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UPModel.Disciplina" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="UPModel.Exam" Width="1.5" PointX="9.75" PointY="6.5" />
+        <EntityTypeShape EntityType="UPModel.Fakultet" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="UPModel.flowers_Valitov" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="UPModel.Ingener" Width="1.5" PointX="7.5" PointY="4.75" />
+        <EntityTypeShape EntityType="UPModel.Kafedra" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="UPModel.Prepodavatel" Width="1.5" PointX="7.5" PointY="7.125" />
+        <EntityTypeShape EntityType="UPModel.Sotrudnik" Width="1.5" PointX="5.25" PointY="6.5" />
+        <EntityTypeShape EntityType="UPModel.Specialnost" Width="1.5" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="UPModel.Student" Width="1.5" PointX="7.5" PointY="12" />
+        <EntityTypeShape EntityType="UPModel.Students" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UPModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="UPModel.Upravlenie_Valitov" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="UPModel.Zav_kafedra" Width="1.5" PointX="7.5" PointY="9.625" />
+        <EntityTypeShape EntityType="UPModel.Гимназисты" Width="1.5" PointX="9.75" PointY="10.75" />
+        <AssociationConnector Association="UPModel.FK_Disciplina_Kafedra" />
+        <AssociationConnector Association="UPModel.FK_Exam_Disciplina" />
+        <AssociationConnector Association="UPModel.FK_Exam_Student" />
+        <AssociationConnector Association="UPModel.FK_Exam_Student1" />
+        <AssociationConnector Association="UPModel.FK_Kafedra_Fakultet1" />
+        <AssociationConnector Association="UPModel.FK_Ingener_Sotrudnik" />
+        <AssociationConnector Association="UPModel.FK_Sotrudnik_Kafedra" />
+        <AssociationConnector Association="UPModel.FK_Specialnost_Kafedra" />
+        <AssociationConnector Association="UPModel.FK_Prepodavatel_Sotrudnik" />
+        <AssociationConnector Association="UPModel.FK_Zav_kafedra_Sotrudnik" />
+        <AssociationConnector Association="UPModel.FK_Student_Specialnost" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
