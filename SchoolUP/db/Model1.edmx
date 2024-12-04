@@ -47,7 +47,7 @@
           </Key>
           <Property Name="kod" Type="int" Nullable="false" />
           <Property Name="volume" Type="int" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar(max)" />
           <Property Name="ispolnitel" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Exam">
@@ -55,11 +55,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="date" Type="nvarchar" MaxLength="50" />
+          <Property Name="date" Type="nvarchar(max)" />
           <Property Name="kod" Type="int" />
           <Property Name="reg_nomer" Type="int" />
           <Property Name="tab_nomer" Type="int" />
-          <Property Name="auditorya" Type="nvarchar" MaxLength="50" />
+          <Property Name="auditorya" Type="nvarchar(max)" />
           <Property Name="ocenka" Type="int" />
         </EntityType>
         <EntityType Name="Fakultet">
@@ -67,7 +67,7 @@
             <PropertyRef Name="Abbriviatura" />
           </Key>
           <Property Name="Abbriviatura" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="flowers_Valitov">
           <Key>
@@ -81,14 +81,14 @@
             <PropertyRef Name="tab_nomer" />
           </Key>
           <Property Name="tab_nomer" Type="int" Nullable="false" />
-          <Property Name="spec" Type="nvarchar" MaxLength="50" />
+          <Property Name="spec" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Kafedra">
           <Key>
             <PropertyRef Name="shifr" />
           </Key>
           <Property Name="shifr" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar(max)" />
           <Property Name="fakultet" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Prepodavatel">
@@ -96,8 +96,8 @@
             <PropertyRef Name="tab_nomer" />
           </Key>
           <Property Name="tab_nomer" Type="int" Nullable="false" />
-          <Property Name="zvanie" Type="nvarchar" MaxLength="50" />
-          <Property Name="stepen" Type="nvarchar" MaxLength="50" />
+          <Property Name="zvanie" Type="nvarchar(max)" />
+          <Property Name="stepen" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Sotrudnik">
           <Key>
@@ -105,8 +105,8 @@
           </Key>
           <Property Name="tab_nomer" Type="int" Nullable="false" />
           <Property Name="shifr" Type="nvarchar" MaxLength="50" />
-          <Property Name="Familiya" Type="nvarchar" MaxLength="50" />
-          <Property Name="Doljnost" Type="nvarchar" MaxLength="50" />
+          <Property Name="Familiya" Type="nvarchar(max)" />
+          <Property Name="Doljnost" Type="nvarchar(max)" />
           <Property Name="Zarplata" Type="int" />
           <Property Name="Shef" Type="int" />
         </EntityType>
@@ -115,7 +115,7 @@
             <PropertyRef Name="nomer" />
           </Key>
           <Property Name="nomer" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="napravlenie" Type="nvarchar" MaxLength="50" />
+          <Property Name="napravlenie" Type="nvarchar(max)" />
           <Property Name="shifr" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Student">
@@ -124,7 +124,7 @@
           </Key>
           <Property Name="reg_nomer" Type="int" Nullable="false" />
           <Property Name="nomer" Type="nvarchar" MaxLength="50" />
-          <Property Name="Familiya" Type="nvarchar" MaxLength="50" />
+          <Property Name="Familiya" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
@@ -200,19 +200,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exam_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+        <Association Name="FK_Exam_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
           <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="reg_nomer" />
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
             </Principal>
             <Dependent Role="Exam">
-              <PropertyRef Name="reg_nomer" />
+              <PropertyRef Name="tab_nomer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exam_Student1">
+        <Association Name="FK_Exam_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Kafedra_Fakultet1">
+        <Association Name="FK_Kafedra_Fakultet">
           <End Role="Fakultet" Type="Self.Fakultet" Multiplicity="0..1" />
           <End Role="Kafedra" Type="Self.Kafedra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -337,11 +337,11 @@
             <End Role="Disciplina" EntitySet="Disciplina" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
-          <AssociationSet Name="FK_Exam_Student" Association="Self.FK_Exam_Student">
-            <End Role="Student" EntitySet="Student" />
+          <AssociationSet Name="FK_Exam_Sotrudnik" Association="Self.FK_Exam_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
-          <AssociationSet Name="FK_Exam_Student1" Association="Self.FK_Exam_Student1">
+          <AssociationSet Name="FK_Exam_Student" Association="Self.FK_Exam_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
@@ -349,7 +349,7 @@
             <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Ingener" EntitySet="Ingener" />
           </AssociationSet>
-          <AssociationSet Name="FK_Kafedra_Fakultet1" Association="Self.FK_Kafedra_Fakultet1">
+          <AssociationSet Name="FK_Kafedra_Fakultet" Association="Self.FK_Kafedra_Fakultet">
             <End Role="Fakultet" EntitySet="Fakultet" />
             <End Role="Kafedra" EntitySet="Kafedra" />
           </AssociationSet>
@@ -404,15 +404,15 @@
             <End Role="Disciplina" EntitySet="Disciplina" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
+          <AssociationSet Name="FK_Exam_Sotrudnik" Association="UPModel.FK_Exam_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
           <AssociationSet Name="FK_Exam_Student" Association="UPModel.FK_Exam_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
-          <AssociationSet Name="FK_Exam_Student1" Association="UPModel.FK_Exam_Student1">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Exam" EntitySet="Exam" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Kafedra_Fakultet1" Association="UPModel.FK_Kafedra_Fakultet1">
+          <AssociationSet Name="FK_Kafedra_Fakultet" Association="UPModel.FK_Kafedra_Fakultet">
             <End Role="Fakultet" EntitySet="Fakultet" />
             <End Role="Kafedra" EntitySet="Kafedra" />
           </AssociationSet>
@@ -466,7 +466,7 @@
           </Key>
           <Property Name="kod" Type="Int32" Nullable="false" />
           <Property Name="volume" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ispolnitel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Disciplina_Kafedra" FromRole="Disciplina" ToRole="Kafedra" />
           <NavigationProperty Name="Exam" Relationship="UPModel.FK_Exam_Disciplina" FromRole="Disciplina" ToRole="Exam" />
@@ -476,23 +476,23 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="kod" Type="Int32" />
           <Property Name="reg_nomer" Type="Int32" />
           <Property Name="tab_nomer" Type="Int32" />
-          <Property Name="auditorya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="auditorya" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ocenka" Type="Int32" />
           <NavigationProperty Name="Disciplina" Relationship="UPModel.FK_Exam_Disciplina" FromRole="Exam" ToRole="Disciplina" />
+          <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Exam_Sotrudnik" FromRole="Exam" ToRole="Sotrudnik" />
           <NavigationProperty Name="Student" Relationship="UPModel.FK_Exam_Student" FromRole="Exam" ToRole="Student" />
-          <NavigationProperty Name="Student1" Relationship="UPModel.FK_Exam_Student1" FromRole="Exam" ToRole="Student" />
         </EntityType>
         <EntityType Name="Fakultet">
           <Key>
             <PropertyRef Name="Abbriviatura" />
           </Key>
           <Property Name="Abbriviatura" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Kafedra_Fakultet1" FromRole="Fakultet" ToRole="Kafedra" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Kafedra_Fakultet" FromRole="Fakultet" ToRole="Kafedra" />
         </EntityType>
         <EntityType Name="flowers_Valitov">
           <Key>
@@ -506,7 +506,7 @@
             <PropertyRef Name="tab_nomer" />
           </Key>
           <Property Name="tab_nomer" Type="Int32" Nullable="false" />
-          <Property Name="spec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="spec" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Ingener_Sotrudnik" FromRole="Ingener" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Kafedra">
@@ -514,10 +514,10 @@
             <PropertyRef Name="shifr" />
           </Key>
           <Property Name="shifr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="fakultet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Disciplina" Relationship="UPModel.FK_Disciplina_Kafedra" FromRole="Kafedra" ToRole="Disciplina" />
-          <NavigationProperty Name="Fakultet1" Relationship="UPModel.FK_Kafedra_Fakultet1" FromRole="Kafedra" ToRole="Fakultet" />
+          <NavigationProperty Name="Fakultet1" Relationship="UPModel.FK_Kafedra_Fakultet" FromRole="Kafedra" ToRole="Fakultet" />
           <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Sotrudnik_Kafedra" FromRole="Kafedra" ToRole="Sotrudnik" />
           <NavigationProperty Name="Specialnost" Relationship="UPModel.FK_Specialnost_Kafedra" FromRole="Kafedra" ToRole="Specialnost" />
         </EntityType>
@@ -526,8 +526,8 @@
             <PropertyRef Name="tab_nomer" />
           </Key>
           <Property Name="tab_nomer" Type="Int32" Nullable="false" />
-          <Property Name="zvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stepen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="zvanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="stepen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sotrudnik" Relationship="UPModel.FK_Prepodavatel_Sotrudnik" FromRole="Prepodavatel" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Sotrudnik">
@@ -536,10 +536,11 @@
           </Key>
           <Property Name="tab_nomer" Type="Int32" Nullable="false" />
           <Property Name="shifr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Doljnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Familiya" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Doljnost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Zarplata" Type="Int32" />
           <Property Name="Shef" Type="Int32" />
+          <NavigationProperty Name="Exam" Relationship="UPModel.FK_Exam_Sotrudnik" FromRole="Sotrudnik" ToRole="Exam" />
           <NavigationProperty Name="Ingener" Relationship="UPModel.FK_Ingener_Sotrudnik" FromRole="Sotrudnik" ToRole="Ingener" />
           <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Sotrudnik_Kafedra" FromRole="Sotrudnik" ToRole="Kafedra" />
           <NavigationProperty Name="Prepodavatel" Relationship="UPModel.FK_Prepodavatel_Sotrudnik" FromRole="Sotrudnik" ToRole="Prepodavatel" />
@@ -550,7 +551,7 @@
             <PropertyRef Name="nomer" />
           </Key>
           <Property Name="nomer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="napravlenie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="napravlenie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="shifr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Kafedra" Relationship="UPModel.FK_Specialnost_Kafedra" FromRole="Specialnost" ToRole="Kafedra" />
           <NavigationProperty Name="Student" Relationship="UPModel.FK_Student_Specialnost" FromRole="Specialnost" ToRole="Student" />
@@ -561,9 +562,8 @@
           </Key>
           <Property Name="reg_nomer" Type="Int32" Nullable="false" />
           <Property Name="nomer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Familiya" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Exam" Relationship="UPModel.FK_Exam_Student" FromRole="Student" ToRole="Exam" />
-          <NavigationProperty Name="Exam1" Relationship="UPModel.FK_Exam_Student1" FromRole="Student" ToRole="Exam" />
           <NavigationProperty Name="Specialnost" Relationship="UPModel.FK_Student_Specialnost" FromRole="Student" ToRole="Specialnost" />
         </EntityType>
         <EntityType Name="Students">
@@ -635,6 +635,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Exam_Sotrudnik">
+          <End Type="UPModel.Sotrudnik" Role="Sotrudnik" Multiplicity="0..1" />
+          <End Type="UPModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="tab_nomer" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="tab_nomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Exam_Student">
           <End Type="UPModel.Student" Role="Student" Multiplicity="0..1" />
           <End Type="UPModel.Exam" Role="Exam" Multiplicity="*" />
@@ -647,19 +659,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exam_Student1">
-          <End Type="UPModel.Student" Role="Student" Multiplicity="0..1" />
-          <End Type="UPModel.Exam" Role="Exam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="reg_nomer" />
-            </Principal>
-            <Dependent Role="Exam">
-              <PropertyRef Name="reg_nomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Kafedra_Fakultet1">
+        <Association Name="FK_Kafedra_Fakultet">
           <End Type="UPModel.Fakultet" Role="Fakultet" Multiplicity="0..1" />
           <End Type="UPModel.Kafedra" Role="Kafedra" Multiplicity="*" />
           <ReferentialConstraint>

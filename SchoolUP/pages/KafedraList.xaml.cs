@@ -105,7 +105,7 @@ namespace SchoolUP.pages
             string searchText = txtfil.Text.ToLower();
             if (cmbx1.Text == "name")
             {
-                KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList().OrderByDescending(k => k.name);
+                KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList().OrderBy(k => k.name);
             }
             if (cmbx1.Text == "fakultet")
             {

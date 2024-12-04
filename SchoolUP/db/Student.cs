@@ -18,7 +18,6 @@ namespace SchoolUP.db
         public Student()
         {
             this.Exam = new HashSet<Exam>();
-            this.Exam1 = new HashSet<Exam>();
         }
     
         public int reg_nomer { get; set; }
@@ -27,8 +26,6 @@ namespace SchoolUP.db
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exam> Exam { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exam> Exam1 { get; set; }
         public virtual Specialnost Specialnost { get; set; }
     }
 }

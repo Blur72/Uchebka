@@ -14,6 +14,12 @@ namespace SchoolUP.db
     
     public partial class Sotrudnik
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sotrudnik()
+        {
+            this.Exam = new HashSet<Exam>();
+        }
+    
         public int tab_nomer { get; set; }
         public string shifr { get; set; }
         public string Familiya { get; set; }
@@ -21,6 +27,8 @@ namespace SchoolUP.db
         public Nullable<int> Zarplata { get; set; }
         public Nullable<int> Shef { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Exam> Exam { get; set; }
         public virtual Ingener Ingener { get; set; }
         public virtual Kafedra Kafedra { get; set; }
         public virtual Prepodavatel Prepodavatel { get; set; }

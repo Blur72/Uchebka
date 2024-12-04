@@ -23,7 +23,7 @@ namespace SchoolUP.db
         public Nullable<int> ocenka { get; set; }
     
         public virtual Disciplina Disciplina { get; set; }
+        public virtual Sotrudnik Sotrudnik { get; set; }
         public virtual Student Student { get; set; }
-        public virtual Student Student1 { get; set; }
     }
 }
