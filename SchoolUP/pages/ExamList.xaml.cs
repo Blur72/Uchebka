@@ -143,7 +143,7 @@ namespace SchoolUP.pages
 
             if (!int.TryParse(ocenka, out int grade) || grade < 2 || grade > 5)
             {
-                MessageBox.Show("Оценка должна быть в диапазоне от 2 до 5.");
+                MessageBox.Show("Оценка должна быть в диапазоне от 2 до 5."); //fdsfsd
                 return;
             }
             try
