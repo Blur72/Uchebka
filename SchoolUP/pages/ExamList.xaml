@@ -8,7 +8,7 @@
       d:DesignHeight="850" d:DesignWidth="1200"
       Title="ExamList">
 
-    <Grid Background="White">
+    <Grid Background="#FFFCBFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="2*"/>
@@ -19,49 +19,47 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="ExamListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.RowSpan="2" Grid.Column="1" Margin="105,55,249,32" Grid.ColumnSpan="2">
+        <ListView x:Name="ExamListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.RowSpan="2" Grid.Column="1" Margin="105,55,249,32" Grid.ColumnSpan="2" Background="#FFFCBFFF">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding id}" Width="40" Header="id"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding date}" Width="140" Header="Дата"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding kod}" Width="40" Header="Код"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding reg_nomer}" Width="80" Header="рег_номер"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding tab_nomer}" Width="80" Header="таб_номер"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding auditorya}" Width="80" Header="Аудитория"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding ocenka}" Width="80" Header="Оценка"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id_exam}" Width="40" Header="Id_exam"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}" Width="140" Header="Date"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Code}" Width="40" Header="Code"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Reg_number}" Width="80" Header="Reg_number"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Tab_number}" Width="80" Header="Tab_number"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Auditorium}" Width="80" Header="Auditorium"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Grade}" Width="80" Header="Grade"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel x:Name="stpan" Orientation="Horizontal" Margin="140,404,125,157" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Click="btnRedact_Click"/>
+            <ui:Button Name="btnRedact" Background="Blue" Foreground="White" Content="Редактировать" Width="150" Height="40" Click="btnRedact_Click"/>
             <ui:TextBox x:Name="txtBox" Width="100" Height="40" Margin="20,0,0,0"/>
-            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="White" Margin="0,0,0,0">
-                <ComboBoxItem Content="date"/>
-                <ComboBoxItem Content="kod"/>
-                <ComboBoxItem Content="reg_nomer"/>
-                <ComboBoxItem Content="tab_nomer"/>
-                <ComboBoxItem Content="auditorya"/>
-                <ComboBoxItem Content="ocenka"/>
+            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="Blue" Foreground="White" Margin="0,0,0,0">
+                <ComboBoxItem Content="Date"/>
+                <ComboBoxItem Content="Code"/>
+                <ComboBoxItem Content="Reg_number"/>
+                <ComboBoxItem Content="Tab_Number"/>
+                <ComboBoxItem Content="Auditorium"/>
+                <ComboBoxItem Content="Grade"/>
             </ComboBox>
-            <ui:Button Name="btnRemove" Content="Удалить" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
+            <ui:Button Name="btnRemove" Content="Удалить" Background="Blue" Foreground="White" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
         </StackPanel>
         <StackPanel x:Name="stackAdd" Margin="29,84,571,76" Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <ui:TextBlock Text="id" FontSize="16px" Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtId" CaretBrush="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="date" FontSize="16px"  Margin="0,10,0,0"/>
-            <DatePicker FontSize="20px" x:Name="txtDate" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="kod" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtKod" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="reg_nomer" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtRegNomer" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="tab_nomer" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtTabNomer" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="auditorya" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtAuditor" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="Ocenka" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtOcenk" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:Button Content="Добавить" Width="100" Height="40" Background="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
+            <ui:TextBlock Text="Date" FontSize="16px"  Margin="0,10,0,0"/>
+            <DatePicker FontSize="20px" x:Name="txtDate" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Code" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtKod" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Reg_number" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtRegNomer" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Tab_number" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtTabNomer" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Auditorium" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtAuditor" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Grade" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtOcenk" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:Button Content="Добавить" Width="100" Height="40" Background="Blue" Foreground="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
         </StackPanel>
-        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
+        <ui:Button Grid.Column="2" Background="Blue" Foreground="White" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
     </Grid>
 </Page>

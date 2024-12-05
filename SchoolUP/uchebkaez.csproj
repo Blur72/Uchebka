@@ -79,29 +79,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="db\Animals_Valitov.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="db\ConnetionDB.cs" />
-    <Compile Include="db\Country_Valitov.cs">
+    <Compile Include="db\Department.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\Disciplina.cs">
+    <Compile Include="db\Disciplines.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Employee.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Engineer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="db\Exam.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\Fakultet.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\flowers_Valitov.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\Ingener.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\Kafedra.cs">
+    <Compile Include="db\Faculty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="db\Model1.Context.cs">
@@ -119,31 +113,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="db\Prepodavatel.cs">
+    <Compile Include="db\Request.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\Sotrudnik.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\Specialnost.cs">
+    <Compile Include="db\Specialities.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="db\Student.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\Students.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="db\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\Upravlenie_Valitov.cs">
+    <Compile Include="db\Teacher.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\Zav_kafedra.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\Гимназисты.cs">
+    <Compile Include="db\Zav_Kaf.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -174,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\PageQR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\SotrudnikList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,6 +190,9 @@
     </Compile>
     <Compile Include="pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\PageQR.xaml.cs">
+      <DependentUpon>PageQR.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\SotrudnikList.xaml.cs">
       <DependentUpon>SotrudnikList.xaml</DependentUpon>

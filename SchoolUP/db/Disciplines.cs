@@ -12,14 +12,21 @@ namespace SchoolUP.db
     using System;
     using System.Collections.Generic;
     
-    public partial class Country_Valitov
+    public partial class Disciplines
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string stolica { get; set; }
-        public string kontinent { get; set; }
-        public Nullable<int> naselenie { get; set; }
-        public Nullable<int> ploshad { get; set; }
-        public Nullable<int> tip { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Disciplines()
+        {
+            this.Exam = new HashSet<Exam>();
+        }
+    
+        public int Code { get; set; }
+        public Nullable<int> Volume { get; set; }
+        public string Name { get; set; }
+        public string Code_department { get; set; }
+    
+        public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Exam> Exam { get; set; }
     }
 }

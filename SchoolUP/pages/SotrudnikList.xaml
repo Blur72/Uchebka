@@ -8,7 +8,7 @@
       d:DesignHeight="850" d:DesignWidth="1200"
       Title="SotrudnikList" Background="White">
 
-    <Grid>
+    <Grid Background="#FFFCBFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="2*"/>
@@ -20,45 +20,45 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ui:TextBox x:Name="txtfil" ui:Grid.Column="1" Margin="70,28,367,136" TextChanged="txtfil_TextChanged"/>
-        <ListView x:Name="SotrudnikListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.Column="1" Margin="70,106,179,34" Grid.RowSpan="2" ui:Grid.ColumnSpan="2">
+        <ListView x:Name="SotrudnikListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.Column="1" Margin="70,106,50,34" Grid.RowSpan="2" ui:Grid.ColumnSpan="2" Background="#FFFCBFFF" Loaded="SotrudnikListView_Loaded">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding tab_nomer}" Width="40" Header="Код"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding shifr}" Width="80" Header="Шифр"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Familiya}" Width="150" Header="Фамилия"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Doljnost}" Width="100" Header="Должность"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Zarplata}" Width="150" Header="Зарплата"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Shef}" Width="100" Header="Шеф"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Tab_Number}" Width="100" Header="Tab_Number"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Code_department}" Width="150" Header="Code_department"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Last_Name}" Width="150" Header="Last_Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Position}" Width="100" Header="Position"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Salary}" Width="150" Header="Salary"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Chief}" Width="100" Header="Chief"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel x:Name="stackAdd" Margin="31,106,569,106" ui:Grid.RowSpan="3" Grid.ColumnSpan="2">
-            <ui:TextBlock Text="id" FontSize="16px" Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtId" CaretBrush="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="volume" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtVolume" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="name" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtName" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="ispolnitel" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtIspoln" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="name" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtNam" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="ispolnitel" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtIspln" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:Button Content="Добавить" Width="100" Height="40" Background="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
+            <ui:TextBlock Text="Tab_Number" FontSize="16px" Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtId" Background="Blue" Foreground="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Code_department" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtVolume" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Last_Name" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtName" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Position" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtIspoln" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Salary" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtNam" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Chief" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtIspln" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:Button Content="Добавить" Width="100" Height="40" Background="Blue" Foreground="Black" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
         </StackPanel>
         <StackPanel x:Name="stpan" Orientation="Horizontal" Margin="106,396,242,165" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Click="btnRedact_Click"/>
+            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Background="Blue" Foreground="White" Click="btnRedact_Click"/>
             <ui:TextBox x:Name="txtBox" Width="100" Height="40" Margin="20,0,0,0"/>
-            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="White" Margin="0,0,0,0">
-                <ComboBoxItem Content="shifr"/>
-                <ComboBoxItem Content="Familiya"/>
-                <ComboBoxItem Content="Doljnost"/>
-                <ComboBoxItem Content="Zarplata"/>
-                <ComboBoxItem Content="Shef"/>
+            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="Blue" Foreground="White" Margin="0,0,0,0">
+                <ComboBoxItem Content="Code_department"/>
+                <ComboBoxItem Content="Last_Name"/>
+                <ComboBoxItem Content="Position"/>
+                <ComboBoxItem Content="Salary"/>
+                <ComboBoxItem Content="Chief"/>
             </ComboBox>
-            <ui:Button Name="btnRemove" Content="Удалить" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
+            <ui:Button Name="btnRemove" Content="Удалить" Background="Blue" Foreground="White" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
         </StackPanel>
-        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
+        <ui:Button Grid.Column="2" Background="Blue" Foreground="White" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
     </Grid>
 </Page>

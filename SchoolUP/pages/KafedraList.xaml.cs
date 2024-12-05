@@ -21,10 +21,12 @@ namespace SchoolUP.pages
     /// </summary>
     public partial class KafedraList : Page
     {
-        public KafedraList()
+        int tab;
+        public KafedraList(int TAB)
         {
             InitializeComponent();
-            KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList();
+            KafedraListView.ItemsSource = ConnetionDB.db.Department.ToList();
+            this.tab = TAB;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -33,18 +35,18 @@ namespace SchoolUP.pages
             string name = txtName.Text;
             string fakultet = txtIspoln.Text;
 
-            var tempKafedr= new Kafedra()
+            var tempKafedr= new Department()
             {
-                shifr = shifr,
-                name = name,
-                fakultet = fakultet,
+                Code = shifr,
+                Name = name,
+                FacultyAbbreviation = fakultet,
             };
             try
             {
-                ConnetionDB.db.Kafedra.Add(tempKafedr);
+                ConnetionDB.db.Department.Add(tempKafedr);
                 ConnetionDB.db.SaveChanges();
                 MessageBox.Show("Добавлена кафедра");
-                KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList();
+                KafedraListView.ItemsSource = ConnetionDB.db.Department.ToList();
                 return;
             }
             catch
@@ -59,17 +61,13 @@ namespace SchoolUP.pages
             {
                 try
                 {
-                    Kafedra student = KafedraListView.SelectedItem as Kafedra;
+                    Department student = KafedraListView.SelectedItem as Department;
                     if (cmbx.Text == "name")
                     {
-                        student.name = txtBox.Text;
-                    }
-                    if (cmbx.Text == "fakultet")
-                    {
-                        student.fakultet = txtBox.Text;
+                        student.Name = txtBox.Text;
                     }
                     ConnetionDB.db.SaveChanges();
-                    KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList();
+                    KafedraListView.ItemsSource = ConnetionDB.db.Department.ToList();
                     return;
                 }
                 catch
@@ -81,10 +79,17 @@ namespace SchoolUP.pages
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Kafedra exam = KafedraListView.SelectedItem as Kafedra;
-            ConnetionDB.db.Kafedra.Remove(exam);
+            Department department = KafedraListView.SelectedItem as Department;
+
+            var employees = ConnetionDB.db.Employee.Where(eпрапр => eпрапр.Code_department == department.Code).ToList();
+            if (employees.Any())
+            {
+                MessageBox.Show("Невозможно удалить кафедру, так как она связана с записями сотрудников.");
+                return;
+            }
+            ConnetionDB.db.Department.Remove(department);
             ConnetionDB.db.SaveChanges();
-            KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList();
+            KafedraListView.ItemsSource = ConnetionDB.db.Department.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -94,22 +99,18 @@ namespace SchoolUP.pages
 
         private void txtfil_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Kafedra kafedra = ConnetionDB.kafedra;
+            Department kafedra = ConnetionDB.department;
             string searchText = txtfil.Text.ToLower();
-            KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList().Where(s => s.name.ToLower().Contains(searchText)).ToList();
+            KafedraListView.ItemsSource = ConnetionDB.db.Department.ToList().Where(s => s.Name.ToLower().Contains(searchText)).ToList();
         }
 
         private void cmbx1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Kafedra kafedra = ConnetionDB.kafedra;
+            Department kafedra = ConnetionDB.department;
             string searchText = txtfil.Text.ToLower();
-            if (cmbx1.Text == "name")
+            if (cmbx1.Text == "Name")
             {
-                KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList().OrderBy(k => k.name);
-            }
-            if (cmbx1.Text == "fakultet")
-            {
-                KafedraListView.ItemsSource = ConnetionDB.db.Kafedra.ToList().OrderBy(k => k.fakultet);
+                KafedraListView.ItemsSource = ConnetionDB.db.Department.ToList().OrderBy(k => k.Name);
             }
         }
     }

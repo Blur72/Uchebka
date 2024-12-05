@@ -21,10 +21,12 @@ namespace SchoolUP.pages
     /// </summary>
     public partial class SpecialnostList : Page
     {
-        public SpecialnostList()
+        int tab;
+        public SpecialnostList(int TAB)
         {
             InitializeComponent();
-            SpecialnostListView.ItemsSource = ConnetionDB.db.Specialnost.ToList();
+            SpecialnostListView.ItemsSource = ConnetionDB.db.Specialities.ToList();
+            this.tab = TAB;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -33,23 +35,31 @@ namespace SchoolUP.pages
             string naprav = txtName.Text;
             string shifr = txtIspoln.Text;
 
-            var tempSpec = new Specialnost()
+            // Проверяем, существует ли Код кафедры в таблице Department
+            var departmentExists = ConnetionDB.db.Department.Any(d => d.Code == shifr);
+            if (!departmentExists)
             {
-                nomer = kod,
-                napravlenie = naprav,
-                shifr = shifr,
-            };
-            try
-            {
-                ConnetionDB.db.Specialnost.Add(tempSpec);
-                ConnetionDB.db.SaveChanges();
-                MessageBox.Show("Добавлена специальность");
-                SpecialnostListView.ItemsSource = ConnetionDB.db.Specialnost.ToList();
+                MessageBox.Show("Ошибка: Указанный Код кафедры не существует.");
                 return;
             }
-            catch
+
+            var tempSpec = new Specialities()
             {
-                MessageBox.Show("Введены неправильные данные");
+                Number = kod,
+                Direction = naprav,
+                Code_department = shifr,
+            };
+
+            try
+            {
+                ConnetionDB.db.Specialities.Add(tempSpec);
+                ConnetionDB.db.SaveChanges();
+                MessageBox.Show("Добавлена специальность");
+                SpecialnostListView.ItemsSource = ConnetionDB.db.Specialities.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении специальности: {ex.Message}");
             }
         }
 
@@ -59,17 +69,17 @@ namespace SchoolUP.pages
             {
                 try
                 {
-                    Specialnost student = SpecialnostListView.SelectedItem as Specialnost   ;
-                    if (cmbx.Text == "napravlenie")
+                    Specialities student = SpecialnostListView.SelectedItem as Specialities;
+                    if (cmbx.Text == "Direction")
                     {
-                        student.napravlenie = txtBox.Text;
+                        student.Direction = txtBox.Text;
                     }
-                    if (cmbx.Text == "shifr")
+                    if (cmbx.Text == "Code_department")
                     {
-                        student.shifr = txtBox.Text;
+                        student.Code_department = txtBox.Text;
                     }
                     ConnetionDB.db.SaveChanges();
-                    SpecialnostListView.ItemsSource = ConnetionDB.db.Specialnost.ToList();
+                    SpecialnostListView.ItemsSource = ConnetionDB.db.Specialities.ToList();
                     return;
                 }
                 catch
@@ -81,10 +91,26 @@ namespace SchoolUP.pages
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Specialnost exam = SpecialnostListView.SelectedItem as Specialnost;
-            ConnetionDB.db.Specialnost.Remove(exam);
+            // Получаем выбранный элемент из списка
+            Specialities speciality = SpecialnostListView.SelectedItem as Specialities;
+
+            // Проверяем, есть ли связанные записи в связанных таблицах
+            var employees = ConnetionDB.db.Employee.Where(ivan => ivan.Code_department == speciality.Code_department).ToList();
+            if (employees.Any())
+            {
+                // Если есть связанные записи, выводим сообщение и выходим из метода
+                MessageBox.Show("Невозможно удалить специальность, так как она связана с записями сотрудников.");
+                return;
+            }
+
+            // Если зависимостей нет, удаляем специальность
+            ConnetionDB.db.Specialities.Remove(speciality);
+
+            // Сохраняем изменения в базе данных
             ConnetionDB.db.SaveChanges();
-            SpecialnostListView.ItemsSource = ConnetionDB.db.Specialnost.ToList();
+
+            // Обновляем источник данных
+            SpecialnostListView.ItemsSource = ConnetionDB.db.Specialities.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

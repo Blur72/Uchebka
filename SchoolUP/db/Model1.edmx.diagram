@@ -4,35 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="675725c6d1524bef8f313bca7208aa18" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="UPModel.Animals_Valitov" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="UPModel.Country_Valitov" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="UPModel.Disciplina" Width="1.5" PointX="5.25" PointY="11.875" />
-        <EntityTypeShape EntityType="UPModel.Exam" Width="1.5" PointX="9.75" PointY="7.25" />
-        <EntityTypeShape EntityType="UPModel.Fakultet" Width="1.5" PointX="0.75" PointY="7.125" />
-        <EntityTypeShape EntityType="UPModel.flowers_Valitov" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="UPModel.Ingener" Width="1.5" PointX="7.5" PointY="6.75" />
-        <EntityTypeShape EntityType="UPModel.Kafedra" Width="1.5" PointX="3" PointY="6.75" />
-        <EntityTypeShape EntityType="UPModel.Prepodavatel" Width="1.5" PointX="7.5" PointY="4.25" />
-        <EntityTypeShape EntityType="UPModel.Sotrudnik" Width="1.5" PointX="5.25" PointY="3.5" />
-        <EntityTypeShape EntityType="UPModel.Specialnost" Width="1.5" PointX="5.25" PointY="9.125" />
-        <EntityTypeShape EntityType="UPModel.Student" Width="1.5" PointX="7.5" PointY="9.125" />
-        <EntityTypeShape EntityType="UPModel.Students" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="UPModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="UPModel.Upravlenie_Valitov" Width="1.5" PointX="9.75" PointY="4.75" />
-        <EntityTypeShape EntityType="UPModel.Zav_kafedra" Width="1.5" PointX="7.5" PointY="1.875" />
-        <EntityTypeShape EntityType="UPModel.Гимназисты" Width="1.5" PointX="0.75" PointY="10.75" />
-        <AssociationConnector Association="UPModel.FK_Disciplina_Kafedra" />
-        <AssociationConnector Association="UPModel.FK_Exam_Disciplina" />
-        <AssociationConnector Association="UPModel.FK_Exam_Sotrudnik" />
-        <AssociationConnector Association="UPModel.FK_Exam_Student" />
-        <AssociationConnector Association="UPModel.FK_Kafedra_Fakultet" />
-        <AssociationConnector Association="UPModel.FK_Ingener_Sotrudnik" />
-        <AssociationConnector Association="UPModel.FK_Sotrudnik_Kafedra" />
-        <AssociationConnector Association="UPModel.FK_Specialnost_Kafedra" />
-        <AssociationConnector Association="UPModel.FK_Prepodavatel_Sotrudnik" />
-        <AssociationConnector Association="UPModel.FK_Zav_kafedra_Sotrudnik" />
-        <AssociationConnector Association="UPModel.FK_Student_Specialnost" />
+      <Diagram DiagramId="60de08d43ea74d109f4f9f74d62fbd65" Name="Diagram1">
+        <EntityTypeShape EntityType="aeModel.Department" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Disciplines" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Employee" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Engineer" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Exam" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Faculty" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Request" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Specialities" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Student" Width="1.5" PointX="7.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Teacher" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="aeModel.Zav_Kaf" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="aeModel.FK__Departmen__Facul__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Disciplin__Code___4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Employee__Code_d__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Specialit__Code___778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Exam__Code__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Employee__Chief__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Engineer__Specia__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Exam__Tab_number__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Teacher__Tab_num__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Zav_Kaf__Code_re__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Exam__Reg_number__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Request__Number__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="aeModel.FK__Student__Number___09A971A2" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,16 +14,16 @@ namespace SchoolUP.db
     
     public partial class Exam
     {
-        public int id { get; set; }
-        public string date { get; set; }
-        public Nullable<int> kod { get; set; }
-        public Nullable<int> reg_nomer { get; set; }
-        public Nullable<int> tab_nomer { get; set; }
-        public string auditorya { get; set; }
-        public Nullable<int> ocenka { get; set; }
+        public int Id_exam { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> Code { get; set; }
+        public Nullable<int> Reg_number { get; set; }
+        public Nullable<int> Tab_number { get; set; }
+        public string Auditorium { get; set; }
+        public Nullable<int> Grade { get; set; }
     
-        public virtual Disciplina Disciplina { get; set; }
-        public virtual Sotrudnik Sotrudnik { get; set; }
+        public virtual Disciplines Disciplines { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual Student Student { get; set; }
     }
 }

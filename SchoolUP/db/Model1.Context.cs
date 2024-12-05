@@ -13,10 +13,10 @@ namespace SchoolUP.db
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UPEntities1 : DbContext
+    public partial class aeEntities1 : DbContext
     {
-        public UPEntities1()
-            : base("name=UPEntities1")
+        public aeEntities1()
+            : base("name=aeEntities1")
         {
         }
     
@@ -25,22 +25,17 @@ namespace SchoolUP.db
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Animals_Valitov> Animals_Valitov { get; set; }
-        public virtual DbSet<Country_Valitov> Country_Valitov { get; set; }
-        public virtual DbSet<Disciplina> Disciplina { get; set; }
+        public virtual DbSet<Department> Department { get; set; }
+        public virtual DbSet<Disciplines> Disciplines { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Engineer> Engineer { get; set; }
         public virtual DbSet<Exam> Exam { get; set; }
-        public virtual DbSet<Fakultet> Fakultet { get; set; }
-        public virtual DbSet<flowers_Valitov> flowers_Valitov { get; set; }
-        public virtual DbSet<Ingener> Ingener { get; set; }
-        public virtual DbSet<Kafedra> Kafedra { get; set; }
-        public virtual DbSet<Prepodavatel> Prepodavatel { get; set; }
-        public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
-        public virtual DbSet<Specialnost> Specialnost { get; set; }
+        public virtual DbSet<Faculty> Faculty { get; set; }
+        public virtual DbSet<Request> Request { get; set; }
+        public virtual DbSet<Specialities> Specialities { get; set; }
         public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Upravlenie_Valitov> Upravlenie_Valitov { get; set; }
-        public virtual DbSet<Zav_kafedra> Zav_kafedra { get; set; }
-        public virtual DbSet<Гимназисты> Гимназисты { get; set; }
+        public virtual DbSet<Teacher> Teacher { get; set; }
+        public virtual DbSet<Zav_Kaf> Zav_Kaf { get; set; }
     }
 }

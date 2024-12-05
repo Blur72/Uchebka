@@ -8,7 +8,7 @@
       d:DesignHeight="850" d:DesignWidth="1200"
       Title="SpecialnostList" Background="White">
 
-    <Grid>
+    <Grid Background="#FFFCBFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="2*"/>
@@ -19,33 +19,33 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="SpecialnostListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.Column="1" Margin="106,212,123,30" Grid.RowSpan="2">
+        <ListView x:Name="SpecialnostListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.Column="1" Margin="106,212,45,30" Grid.RowSpan="2" Background="#FFFCBFFF">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding nomer}" Width="40" Header="Код"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding napravlenie}" Width="180" Header="направление"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding shifr}" Width="50" Header="шифр"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Number}" Width="120" Header="Number"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Direction}" Width="180" Header="Direction"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Code_department}" Width="160" Header="Code_department"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel x:Name="stackAdd" Margin="29,10,571,165" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1">
-            <ui:TextBlock Text="id" FontSize="16px" Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtId" CaretBrush="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="napravlenie" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtName" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="fakultet" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtIspoln" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:Button Content="Добавить" Width="100" Height="40" Background="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
+            <ui:TextBlock Text="Number" FontSize="16px" Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtId" Background="Blue" Foreground="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Direction" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtName" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Code_department" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtIspoln" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:Button Content="Добавить" Width="100" Height="40" Background="Blue" Foreground="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
         </StackPanel>
         <StackPanel x:Name="stpan" Orientation="Horizontal" Margin="106,396,242,165" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Click="btnRedact_Click"/>
+            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Background="Blue" Foreground="White" Height="40" Click="btnRedact_Click"/>
             <ui:TextBox x:Name="txtBox" Width="100" Height="40" Margin="20,0,0,0"/>
-            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="White" Margin="0,0,0,0">
-                <ComboBoxItem Content="napravlenie"/>
-                <ComboBoxItem Content="shifr"/>
+            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="Blue" Foreground="White" Margin="0,0,0,0">
+                <ComboBoxItem Content="Direction"/>
+                <ComboBoxItem Content="Code_department"/>
             </ComboBox>
-            <ui:Button Name="btnRemove" Content="Удалить" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
+            <ui:Button Name="btnRemove" Content="Удалить" Width="90" Background="Blue" Foreground="White" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
         </StackPanel>
-        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
+        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Background="Blue" Foreground="White" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
     </Grid>
 </Page>

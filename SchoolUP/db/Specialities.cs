@@ -12,21 +12,23 @@ namespace SchoolUP.db
     using System;
     using System.Collections.Generic;
     
-    public partial class Disciplina
+    public partial class Specialities
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Disciplina()
+        public Specialities()
         {
-            this.Exam = new HashSet<Exam>();
+            this.Request = new HashSet<Request>();
+            this.Student = new HashSet<Student>();
         }
     
-        public int kod { get; set; }
-        public Nullable<int> volume { get; set; }
-        public string name { get; set; }
-        public string ispolnitel { get; set; }
+        public string Number { get; set; }
+        public string Direction { get; set; }
+        public string Code_department { get; set; }
     
-        public virtual Kafedra Kafedra { get; set; }
+        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exam> Exam { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student { get; set; }
     }
 }

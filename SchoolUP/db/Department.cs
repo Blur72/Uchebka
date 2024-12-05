@@ -12,26 +12,26 @@ namespace SchoolUP.db
     using System;
     using System.Collections.Generic;
     
-    public partial class Kafedra
+    public partial class Department
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kafedra()
+        public Department()
         {
-            this.Disciplina = new HashSet<Disciplina>();
-            this.Sotrudnik = new HashSet<Sotrudnik>();
-            this.Specialnost = new HashSet<Specialnost>();
+            this.Disciplines = new HashSet<Disciplines>();
+            this.Employee = new HashSet<Employee>();
+            this.Specialities = new HashSet<Specialities>();
         }
     
-        public string shifr { get; set; }
-        public string name { get; set; }
-        public string fakultet { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string FacultyAbbreviation { get; set; }
     
+        public virtual Faculty Faculty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Disciplina> Disciplina { get; set; }
-        public virtual Fakultet Fakultet1 { get; set; }
+        public virtual ICollection<Disciplines> Disciplines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sotrudnik> Sotrudnik { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Specialnost> Specialnost { get; set; }
+        public virtual ICollection<Specialities> Specialities { get; set; }
     }
 }

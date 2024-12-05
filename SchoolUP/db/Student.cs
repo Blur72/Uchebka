@@ -20,12 +20,12 @@ namespace SchoolUP.db
             this.Exam = new HashSet<Exam>();
         }
     
-        public int reg_nomer { get; set; }
-        public string nomer { get; set; }
-        public string Familiya { get; set; }
+        public int Reg_number { get; set; }
+        public string Number_speciality { get; set; }
+        public string Last_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exam> Exam { get; set; }
-        public virtual Specialnost Specialnost { get; set; }
+        public virtual Specialities Specialities { get; set; }
     }
 }

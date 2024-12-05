@@ -22,10 +22,14 @@ namespace SchoolUP.pages
     /// </summary>
     public partial class SotrudnikList : Page
     {
-        public SotrudnikList()
+
+        int Tab;
+        public SotrudnikList(int TAB)
         {
             InitializeComponent();
-            SotrudnikListView.ItemsSource = ConnetionDB.db.Sotrudnik.ToList();
+            this.Tab = TAB;
+            var tempUser = ConnetionDB.db.Employee.FirstOrDefault(u => u.Tab_Number == Tab);
+            SotrudnikListView.ItemsSource = ConnetionDB.db.Employee.ToList();
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -37,21 +41,21 @@ namespace SchoolUP.pages
             string zarplata = txtNam.Text;
             string shef = txtIspln.Text;
 
-            var tempDisp = new Sotrudnik()
+            var tempDisp = new Employee()
             {
-                tab_nomer = Convert.ToInt32(kod),
-                shifr = shifr,
-                Familiya = fam,
-                Doljnost = dolj,
-                Zarplata = Convert.ToInt32(zarplata),
-                Shef = Convert.ToInt32(shef)
+                Tab_Number = Convert.ToInt32(kod),
+                Code_department = shifr,
+                Last_Name = fam,
+                Position = dolj,
+                Salary = Convert.ToInt32(zarplata),
+                Chief = Convert.ToInt32(shef)
             };
             try
             {
-                ConnetionDB.db.Sotrudnik.Add(tempDisp);
+                ConnetionDB.db.Employee.Add(tempDisp);
                 ConnetionDB.db.SaveChanges();
                 MessageBox.Show("Добавлен сотрудник");
-                SotrudnikListView.ItemsSource = ConnetionDB.db.Sotrudnik.ToList();
+                SotrudnikListView.ItemsSource = ConnetionDB.db.Employee.ToList();
                 return;
             }
             catch
@@ -66,29 +70,53 @@ namespace SchoolUP.pages
             {
                 try
                 {
-                    Sotrudnik student = SotrudnikListView.SelectedItem as Sotrudnik;
-                    if (cmbx.Text == "shifr")
+                    Employee student = SotrudnikListView.SelectedItem as Employee;
+                    var sakdm = ConnetionDB.db.Employee.FirstOrDefault(asdsad => asdsad.Tab_Number == student.Tab_Number);
+                    if (cmbx.Text == "Code_department")
                     {
-                        student.shifr = txtBox.Text;
+                        student.Code_department = txtBox.Text;
                     }
-                    if (cmbx.Text == "Familiya")
+                    if (cmbx.Text == "Last_Name")
                     {
-                        student.Familiya = txtBox.Text;
+                        student.Last_Name = txtBox.Text;
                     }
-                    if (cmbx.Text == "Doljnost")
+                    if (cmbx.Text == "Position")
                     {
-                        student.Doljnost = txtBox.Text;
+                        var emp = ConnetionDB.db.Employee.FirstOrDefault(a => a.Position == txtBox.Text);
+                        if (emp != null)
+                        {
+                            student.Position = txtBox.Text; 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Такой должности не существует");
+                        }
                     }
-                    if (cmbx.Text == "Zarplata")
+                    if (cmbx.Text == "Salary")
                     {
-                        student.Zarplata = Convert.ToInt32(txtBox.Text);
+                        if (Convert.ToInt32(txtBox.Text) > 0)
+                        {
+                            student.Salary = Convert.ToInt32(txtBox.Text);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Оклад не может быть меньше 0");
+                        }
                     }
-                    if (cmbx.Text == "Shef")
+                    if (cmbx.Text == "Chief")
                     {
-                        student.Shef = Convert.ToInt32(txtBox.Text);
+                        var empp = ConnetionDB.db.Employee.FirstOrDefault(b=>b.Tab_Number == student.Tab_Number);
+                        if (empp != null)
+                        {
+                            student.Chief = Convert.ToInt32(txtBox.Text);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Такого шефа не существует");
+                        }
                     }
                     ConnetionDB.db.SaveChanges();
-                    SotrudnikListView.ItemsSource = ConnetionDB.db.Sotrudnik.ToList();
+                    SotrudnikListView.ItemsSource = ConnetionDB.db.Employee.ToList();
                     return;
                 }
                 catch
@@ -100,10 +128,20 @@ namespace SchoolUP.pages
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Sotrudnik exam = SotrudnikListView.SelectedItem as Sotrudnik;
-            ConnetionDB.db.Sotrudnik.Remove(exam);
-            ConnetionDB.db.SaveChanges();
-            SotrudnikListView.ItemsSource = ConnetionDB.db.Sotrudnik.ToList();
+            Employee employee = SotrudnikListView.SelectedItem as Employee;
+
+            if (employee != null && employee.Tab_Number == Tab)
+            {
+                MessageBox.Show("Невозможно удалить текущего пользователя.");
+                return;
+            }
+
+            if (employee != null)
+            {
+                ConnetionDB.db.Employee.Remove(employee);
+                ConnetionDB.db.SaveChanges();
+                SotrudnikListView.ItemsSource = ConnetionDB.db.Employee.ToList();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -113,9 +151,14 @@ namespace SchoolUP.pages
 
         private void txtfil_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Sotrudnik sotrudnik = ConnetionDB.Sotrudnik;
+            Employee sotrudnik = ConnetionDB.employee;
             string searchText = txtfil.Text.ToLower();
-            SotrudnikListView.ItemsSource = ConnetionDB.db.Sotrudnik.ToList().Where(s => s.Familiya.ToLower().Contains(searchText)).ToList();
+            SotrudnikListView.ItemsSource = ConnetionDB.db.Employee.ToList().Where(s => s.Last_Name.ToLower().Contains(searchText)).ToList();
+        }
+
+        private void SotrudnikListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            SotrudnikListView.ItemsSource = ConnetionDB.db.Employee.ToList();
         }
     }
 }

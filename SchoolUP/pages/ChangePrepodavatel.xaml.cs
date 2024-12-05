@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolUP.db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,19 +21,23 @@ namespace SchoolUP.pages
     /// </summary>
     public partial class ChangePrepodavatel : Page
     {
-        public ChangePrepodavatel()
+
+        int tab;
+        public ChangePrepodavatel(int TAB)
         {
             InitializeComponent();
+            this.tab = TAB;
+            var tempUser = ConnetionDB.db.Employee.FirstOrDefault(u => u.Tab_Number == tab);
         }
 
         private void btnExam_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ExamList());
+            NavigationService.Navigate(new ExamList(tab));
         }
 
         private void btnDisp_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new DisciplinaList());
+            NavigationService.Navigate(new DisciplinaList(tab));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -18,10 +18,12 @@ namespace SchoolUP.pages
 {
     public partial class DisciplinaList : Page
     {
-        public DisciplinaList()
+        int tab;
+        public DisciplinaList(int TAB)
         {
             InitializeComponent();
-            DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplina.ToList();
+            DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplines.ToList();
+            this.tab = TAB;
         }
 
         private void btnRedact_Click(object sender, RoutedEventArgs e)
@@ -30,21 +32,21 @@ namespace SchoolUP.pages
             {
                 try
                 {
-                        Disciplina student = DisciplinaListView.SelectedItem as Disciplina;
-                        if (cmbx.Text == "volume")
+                        Disciplines student = DisciplinaListView.SelectedItem as Disciplines;
+                        if (cmbx.Text == "Volume")
                         {
-                            student.volume = Convert.ToInt32(txtBox.Text);
+                            student.Volume = Convert.ToInt32(txtBox.Text);
                         }
-                        if (cmbx.Text == "name")
+                        if (cmbx.Text == "Name")
                         {
-                            student.name = txtBox.Text;
+                            student.Name = txtBox.Text;
                         }
-                        if (cmbx.Text == "ispolnitel")
+                        if (cmbx.Text == "Code_department")
                         {
-                            student.ispolnitel = txtBox.Text;
+                            student.Code_department = txtBox.Text;
                         }                        
                         ConnetionDB.db.SaveChanges();
-                        DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplina.ToList();
+                        DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplines.ToList();
                         return;
                 }
                 catch
@@ -61,24 +63,23 @@ namespace SchoolUP.pages
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            string kod = txtId.Text;
-            string volume = txtVolume.Text;
-            string name = txtName.Text;
-            string ispolnitel = txtIspoln.Text;
-
-            var tempDisp = new Disciplina()
-            {
-                kod = Convert.ToInt32(kod),
-                volume = Convert.ToInt32(volume),
-                name = name,
-                ispolnitel = ispolnitel
-            };
             try
             {
-                ConnetionDB.db.Disciplina.Add(tempDisp);
+                string volume = txtVolume.Text;
+                string name = txtName.Text;
+                string cod = txtIspoln.Text;
+
+                var tempDisp = new Disciplines()
+                {
+                    Volume = Convert.ToInt32(volume),
+                    Name = name,
+                    Code_department = cod
+                };
+
+                ConnetionDB.db.Disciplines.Add(tempDisp);
                 ConnetionDB.db.SaveChanges();
                 MessageBox.Show("Добавлена дисциплина");
-                DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplina.ToList();
+                DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplines.ToList();
                 return;
             }
             catch
@@ -89,10 +90,10 @@ namespace SchoolUP.pages
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            Disciplina exam = DisciplinaListView.SelectedItem as Disciplina;
-            ConnetionDB.db.Disciplina.Remove(exam);
+            Disciplines exam = DisciplinaListView.SelectedItem as Disciplines;
+            ConnetionDB.db.Disciplines.Remove(exam);
             ConnetionDB.db.SaveChanges();
-            DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplina.ToList();
+            DisciplinaListView.ItemsSource = ConnetionDB.db.Disciplines.ToList();
         }
     }
 }

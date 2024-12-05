@@ -18,34 +18,37 @@ namespace SchoolUP.pages
 {
     public partial class ChangeZavKafedri : Page
     {
-        public ChangeZavKafedri()
+        int Tab;
+        public ChangeZavKafedri(int TAB)
         {
             InitializeComponent();
-            Sotrudnik sotrudnik = ConnetionDB.Sotrudnik;
-            if (sotrudnik.Doljnost == "зав. кафедрой")
+            this.Tab = TAB;
+            var tempUser = ConnetionDB.db.Employee.FirstOrDefault(u=>u.Tab_Number == Tab);
+            if (tempUser.Position == "зав. кафедрой")
             {
                 btnSpec.Visibility = Visibility.Hidden;
             }
+
         }
 
         private void btnExam_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ExamList());
+            NavigationService.Navigate(new ExamList(Tab));
         }
 
         private void btnDisp_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new DisciplinaList());
+            NavigationService.Navigate(new DisciplinaList(Tab));
         }
 
         private void btnSotr_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SotrudnikList());
+            NavigationService.Navigate(new SotrudnikList(Tab));
         }
 
         private void btnKafedr_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new KafedraList());
+            NavigationService.Navigate(new KafedraList(Tab));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,7 +58,7 @@ namespace SchoolUP.pages
 
         private void btnSpec_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SpecialnostList());
+            NavigationService.Navigate(new SpecialnostList(Tab));
         }
     }
 }

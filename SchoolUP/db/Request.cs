@@ -12,9 +12,12 @@ namespace SchoolUP.db
     using System;
     using System.Collections.Generic;
     
-    public partial class flowers_Valitov
+    public partial class Request
     {
-        public int id { get; set; }
-        public string @class { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> Code { get; set; }
+        public string Number { get; set; }
+    
+        public virtual Specialities Specialities { get; set; }
     }
 }

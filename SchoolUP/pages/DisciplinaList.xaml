@@ -8,7 +8,7 @@
       d:DesignHeight="850" d:DesignWidth="1200"
       Title="DisciplinaList" Background="White">
 
-    <Grid>
+    <Grid Background="#FFFCBFFF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="2*"/>
@@ -19,37 +19,37 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="DisciplinaListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Foreground="Black" Grid.Column="1" Margin="106,212,106,30" Grid.RowSpan="2">
+        <ListView x:Name="DisciplinaListView" ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderBrush="White" Background="#FFFCBFFF" Foreground="White" Grid.Column="1" Margin="106,212,106,30" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding kod}" Width="40" Header="Код"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding volume}" Width="80" Header="Объем"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding name}" Width="150" Header="Название"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding ispolnitel}" Width="100" Header="Исполнитель"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Code}" Width="40" Header="Code"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Volume}" Width="80" Header="Volume"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="150" Header="Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Code_department}" Width="100" Header="Code_department"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel x:Name="stackAdd" Margin="29,10,571,165" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1">
-            <ui:TextBlock Text="id" FontSize="16px" Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtId" CaretBrush="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="volume" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtVolume" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="name" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtName" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:TextBlock Text="ispolnitel" FontSize="16px"  Margin="0,10,0,0"/>
-            <ui:TextBox FontSize="20px" x:Name="txtIspoln" CaretBrush="Gray" Margin="0,10,0,0"/>
-            <ui:Button Content="Добавить" Width="100" Height="40" Background="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
+            <ui:TextBlock Text="Code" FontSize="16px" Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtId" Background="Blue" Foreground="Black" BorderBrush="{x:Null}" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Volume" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtVolume" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Name" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtName" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:TextBlock Text="Code_department" FontSize="16px"  Margin="0,10,0,0"/>
+            <ui:TextBox FontSize="20px" x:Name="txtIspoln" Background="Blue" Foreground="Black" Margin="0,10,0,0"/>
+            <ui:Button Content="Добавить" Width="100" Height="40" Background="Blue" Foreground="White" HorizontalAlignment="Center" Margin="0,20,0,0" Click="Button_add"/>
         </StackPanel>
         <StackPanel x:Name="stpan" Orientation="Horizontal" Margin="106,396,242,165" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Click="btnRedact_Click"/>
+            <ui:Button Name="btnRedact" Content="Редактировать" Width="150" Height="40" Background="Blue" Foreground="White" Click="btnRedact_Click"/>
             <ui:TextBox x:Name="txtBox" Width="100" Height="40" Margin="20,0,0,0"/>
-            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="White" Margin="0,0,0,0">
-                <ComboBoxItem Content="volume"/>
-                <ComboBoxItem Content="name"/>
-                <ComboBoxItem Content="ispolnitel"/>
+            <ComboBox Name="cmbx" HorizontalAlignment="Center" Width="120" Background="Blue" Foreground="White" Margin="0,0,0,0">
+                <ComboBoxItem Content="Volume"/>
+                <ComboBoxItem Content="Name"/>
+                <ComboBoxItem Content="Code_department"/>
             </ComboBox>
-            <ui:Button Name="btnRemove" Content="Удалить" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
+            <ui:Button Name="btnRemove" Content="Удалить" Background="Blue" Foreground="White" Width="90" Height="40" Margin="20,0,0,0" Click="btnRemove_Click"/>
         </StackPanel>
-        <ui:Button Grid.Column="2" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
+        <ui:Button Grid.Column="2" Background="Blue" Foreground="White" Content="Назад" Margin="53,74,0,0" Grid.Row="2" VerticalAlignment="Top" Height="42" Width="97" Click="Button_Click"/>
     </Grid>
 </Page>

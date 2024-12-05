@@ -22,52 +22,85 @@ namespace SchoolUP.pages
 {
     public partial class ExamList : Page
     {
-        public ExamList()
+        int tab;
+        public ExamList(int TAB)
         {
             InitializeComponent();
-            ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
-            Sotrudnik sotrudnik = ConnetionDB.Sotrudnik;
-            if (sotrudnik.Doljnost == "преподаватель")
+            this.tab = TAB;
+            var tempUser = ConnetionDB.db.Employee.FirstOrDefault(u => u.Tab_Number == tab);
+            if (tempUser.Position == "преподаватель")
             {
+                ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
                 cmbx.Visibility = Visibility.Hidden;
                 stackAdd.Visibility = Visibility.Hidden;
                 btnRemove.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
+                cmbx.Visibility = Visibility.Visible;
+                stackAdd.Visibility = Visibility.Visible;
+                btnRemove.Visibility = Visibility.Visible;
             }
         }
 
         private void btnRedact_Click(object sender, RoutedEventArgs e)
         {
-            Sotrudnik sotrudnik = ConnetionDB.Sotrudnik;
+            var tempUser = ConnetionDB.db.Employee.FirstOrDefault(u => u.Tab_Number == tab);
             if (ExamListView.SelectedItem != null)
             {
                 try
                 {
-                    if (sotrudnik.Doljnost == "зав. кафедрой")
+                    if (tempUser.Position == "зав. кафедрой")
                     {
                         Exam student = ExamListView.SelectedItem as Exam;
-                        if (cmbx.Text == "date")
+                        if (cmbx.Text == "Date")
                         {
-                            student.date = txtBox.Text;
+                            student.Date = Convert.ToDateTime(txtBox.Text);
                         }
-                        if (cmbx.Text == "kod")
+                        if (cmbx.Text == "Code")
                         {
-                            student.kod = Convert.ToInt32(txtBox.Text);
+                            student.Code = Convert.ToInt32(txtBox.Text);
                         }
-                        if (cmbx.Text == "reg_nomer")
+                        if (cmbx.Text == "Reg_number")
                         {
-                            student.reg_nomer = Convert.ToInt32(txtBox.Text);
+                            var emp = ConnetionDB.db.Exam.FirstOrDefault(a => a.Id_exam == Convert.ToInt32(txtBox.Text));
+                            if (emp != null)
+                            {
+                                student.Reg_number = Convert.ToInt32(txtBox.Text);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Такого рег номера не существует");
+                            }
+                            student.Tab_number = Convert.ToInt32(txtBox.Text);
                         }
-                        if (cmbx.Text == "tab_nomer")
+                        if (cmbx.Text == "Tab_number")
                         {
-                            student.tab_nomer = Convert.ToInt32(txtBox.Text);
+                            var emp = ConnetionDB.db.Employee.FirstOrDefault(a => a.Tab_Number == Convert.ToInt32(txtBox.Text));
+                            if (emp != null)
+                            {
+                                student.Tab_number = Convert.ToInt32(txtBox.Text);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Такого таб номера не существует");
+                            }
                         }
-                        if (cmbx.Text == "auditorya")
+                        if (cmbx.Text == "Auditorium")
                         {
-                            student.auditorya = txtBox.Text;
+                            student.Auditorium = txtBox.Text;
                         }
-                        if (cmbx.Text == "ocenka")
+                        if (cmbx.Text == "Grade")
                         {
-                            student.ocenka = Convert.ToInt32(txtBox.Text);
+                            if (Convert.ToInt32(txtBox.Text) > 1 && Convert.ToInt32(txtBox.Text) < 6)
+                            {
+                                student.Grade = Convert.ToInt32(txtBox.Text);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Оценка может быть от 2 до 5");
+                            }
                         }
                         ConnetionDB.db.SaveChanges();
                         ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
@@ -75,10 +108,17 @@ namespace SchoolUP.pages
                     }  
                     else
                     {
-                        Exam student = ExamListView.SelectedItem as Exam;
-                        student.ocenka = Convert.ToInt32(txtBox.Text);
-                        ConnetionDB.db.SaveChanges();
-                        ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
+                        if (Convert.ToInt32(txtBox.Text) > 1 && Convert.ToInt32(txtBox.Text) < 6)
+                        {
+                            Exam student = ExamListView.SelectedItem as Exam;
+                            student.Grade = Convert.ToInt32(txtBox.Text);
+                            ConnetionDB.db.SaveChanges();
+                            ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Оценка может быть от 2 до 5");
+                        }
                     }
                 }
                 catch { 
@@ -94,7 +134,6 @@ namespace SchoolUP.pages
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            string id = txtId.Text;
             string date = txtDate.Text;
             string kod = txtKod.Text;
             string regnomer = txtRegNomer.Text;
@@ -102,24 +141,30 @@ namespace SchoolUP.pages
             string audit = txtAuditor.Text;
             string ocenka = txtOcenk.Text;
 
-            var tempExam = new Exam()
+            if (!int.TryParse(ocenka, out int grade) || grade < 2 || grade > 5)
             {
-                id = Convert.ToInt32(id),
-                date = date,
-                kod = Convert.ToInt32(kod),
-                reg_nomer = Convert.ToInt32(regnomer),
-                tab_nomer = Convert.ToInt32(tabnomer),
-                auditorya = audit,
-                ocenka = Convert.ToInt32(ocenka)
-            };
+                MessageBox.Show("Оценка должна быть в диапазоне от 2 до 5.");
+                return;
+            }
             try
             {
+                var tempExam = new Exam()
+                {
+                    Date = Convert.ToDateTime(date),
+                    Code = Convert.ToInt32(kod),
+                    Reg_number = Convert.ToInt32(regnomer),
+                    Tab_number = Convert.ToInt32(tabnomer),
+                    Auditorium = audit,
+                    Grade = Convert.ToInt32(ocenka)
+                };
+
                 ConnetionDB.db.Exam.Add(tempExam);
                 ConnetionDB.db.SaveChanges();
                 MessageBox.Show("Добавлен экзамен");
                 ExamListView.ItemsSource = ConnetionDB.db.Exam.ToList();
                 return;
-            } catch
+            } 
+            catch
             { 
                 MessageBox.Show("Введены неправильные данные");
             }

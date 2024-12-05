@@ -1,0 +1,16 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SchoolUP.pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="SchoolUP.pages.PageQR"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="PageQR">
+
+    <Grid Background="#FFFCBFFF">
+        <Image x:Name="QRCode" HorizontalAlignment="Left" Height="370" Margin="755,343,0,0" VerticalAlignment="Top" Width="430"/>
+        <ui:Button Content="Назад" Margin="84,87,0,0" VerticalAlignment="Top" Background="Blue" Foreground="White" Height="73" Width="143" Click="Button_Click"/>
+    </Grid>
+</Page>

@@ -30,56 +30,34 @@ namespace SchoolUP.pages
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            QRCode.Source = GenerateQrCodeBitmapImage("https://dom.mck-ktits.ru/");
         }
 
         private void Btn_click(object sender, RoutedEventArgs e)
         {
-            int login = Convert.ToInt32(txtLogin.Text);
-            var user = ConnetionDB.db.Sotrudnik.FirstOrDefault(l => l.tab_nomer == login);
-            if (user != null)
+            int tabn = Convert.ToInt32(txtLogin.Text);
+            var tempUs = ConnetionDB.db.Employee.FirstOrDefault(l => l.Tab_Number == tabn);
+            if (tempUs != null)
             {
-                if(user.Doljnost == "преподаватель")
+                if(tempUs.Position == "преподаватель")
                 {
-                    ConnetionDB.Sotrudnik = user;
-                    _mainWindow.MainFrame.NavigationService.Navigate(new ChangePrepodavatel());
+                    MessageBox.Show("Здравствуйте преподаватель");
+                    _mainWindow.MainFrame.NavigationService.Navigate(new ChangePrepodavatel(tempUs.Tab_Number));
                 }
-                if (user.Doljnost == "зав. кафедрой")
+                if (tempUs.Position == "зав. кафедрой")
                 {
-                    ConnetionDB.Sotrudnik = user;
-                    _mainWindow.MainFrame.NavigationService.Navigate(new ChangeZavKafedri());
+                    MessageBox.Show("Здравствуйте зав. кафедрой");
+                    _mainWindow.MainFrame.NavigationService.Navigate(new ChangeZavKafedri(tempUs.Tab_Number));
                 }
-                if (user.Doljnost == "инженер")
+                if (tempUs.Position == "инженер")
                 {
-                    ConnetionDB.Sotrudnik = user;
-                    _mainWindow.MainFrame.NavigationService.Navigate(new ChangeZavKafedri());
+                    MessageBox.Show("Здравствуйте инженер");
+                    _mainWindow.MainFrame.NavigationService.Navigate(new ChangeZavKafedri(tempUs.Tab_Number));
                 }
 
             }
             else
             {
                 MessageBox.Show("Такого сотрудника нет");
-            }
-        }
-        private BitmapImage GenerateQrCodeBitmapImage(string text)
-        {
-            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
-            {
-                QRCodeData qrCodeData = qrGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q); using (QRCode qrCode = new QRCode(qrCodeData))
-                {
-                    using (Bitmap qrBitmap = qrCode.GetGraphic(20))
-                    {
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            qrBitmap.Save(ms, ImageFormat.Png);
-                            ms.Position = 0;
-                            BitmapImage bitmapImage = new BitmapImage(); bitmapImage.BeginInit();
-                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad; bitmapImage.StreamSource = ms;
-                            bitmapImage.EndInit();
-                            return bitmapImage;
-                        }
-                    }
-                }
             }
         }
     }

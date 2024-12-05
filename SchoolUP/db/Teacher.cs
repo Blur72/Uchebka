@@ -12,12 +12,13 @@ namespace SchoolUP.db
     using System;
     using System.Collections.Generic;
     
-    public partial class Prepodavatel
+    public partial class Teacher
     {
-        public int tab_nomer { get; set; }
-        public string zvanie { get; set; }
-        public string stepen { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> Tab_number { get; set; }
+        public string Title { get; set; }
+        public string Degree { get; set; }
     
-        public virtual Sotrudnik Sotrudnik { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }
